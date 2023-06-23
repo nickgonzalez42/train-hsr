@@ -24,6 +24,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(configurer ->
                 configurer
+                        .requestMatchers(HttpMethod.POST, "/users").hasRole("USER")
                         .requestMatchers(HttpMethod.GET, "/routes").hasRole("USER")
                         .requestMatchers(HttpMethod.GET, "/stations").permitAll()
         );

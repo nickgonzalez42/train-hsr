@@ -21,8 +21,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` 
 VALUES 
-('nick','{noop}test123',1),
-('matt','{noop}test123',1);
+('nick','{noop}password',1),
+('matt','{noop}password',1);
 
 
 --
