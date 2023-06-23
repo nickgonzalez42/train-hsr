@@ -3,7 +3,7 @@ package com.nickgonzalez.trainhsr.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "route")
+@Table(name = "routes")
 public class Route {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
