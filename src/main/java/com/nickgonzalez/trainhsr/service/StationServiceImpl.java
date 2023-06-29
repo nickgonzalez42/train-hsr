@@ -20,4 +20,9 @@ public class StationServiceImpl implements StationService {
     public List<Station> findAll() {
         return stationRepository.findAll();
     }
+
+    @Override
+    public Station findStationById(int id) {
+        return stationRepository.findStationById(id);
+    }
 }
