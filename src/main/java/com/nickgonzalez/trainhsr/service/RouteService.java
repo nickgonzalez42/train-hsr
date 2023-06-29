@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface RouteService {
     public List<Route> findAll();
-    public List<Route> findByOrigin(Station station);
+    Route findById(int id);
 }

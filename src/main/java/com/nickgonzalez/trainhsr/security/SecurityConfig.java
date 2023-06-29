@@ -16,13 +16,11 @@ import javax.sql.DataSource;
 
 @Configuration
 public class SecurityConfig {
-
     @Bean
     public UserDetailsManager userDetailsManager(DataSource dataSource) {
         JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
         return jdbcUserDetailsManager;
     }
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(configurer ->
@@ -36,6 +34,4 @@ public class SecurityConfig {
         http.csrf(csrf -> csrf.disable());
         return http.build();
     }
-
-
 }

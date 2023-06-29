@@ -23,10 +23,8 @@ public class RouteRestController {
     public List<Route> findAll() {
         return routeService.findAll();
     }
-    @GetMapping("/routes/stationId={stationId}")
-    public List<Route> findByStationId(@PathVariable int stationId) {
-        Station station = stationService.findStationById(stationId);
-        return routeService.findByOrigin(station);
+    @GetMapping("/routes/{id}")
+    public Route findAll(@PathVariable int id) {
+        return routeService.findById(id);
     }
-
 }
