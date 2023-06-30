@@ -6,7 +6,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "stations")
@@ -36,6 +35,12 @@ public class Station {
     @Column(name = "zip")
     private String zip;
 
+    @Column(name = "latitude")
+    private Double latitude;
+
+    @Column(name = "longitude")
+    private Double longitude;
+
     @OneToMany(mappedBy = "origin")
     @JsonIgnore
     private List<Route> outbound;
@@ -43,4 +48,18 @@ public class Station {
     @OneToMany(mappedBy = "destination")
     @JsonIgnore
     private List<Route> inbound;
+
+//    pathfinding variables
+    @Transient
+    @JsonIgnore
+    private double g = 0;
+    @JsonIgnore
+    @Transient
+    private double h = 0;
+    @Transient
+    @JsonIgnore
+    private double f = 0;
+    @JsonIgnore
+    @Transient
+    private Station parent = null;
 }

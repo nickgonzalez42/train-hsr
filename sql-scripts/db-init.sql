@@ -11,15 +11,15 @@ CREATE TABLE IF NOT EXISTS `trainapp`.`stations` (
   `city` varchar(50) NOT NULL,
   `state` varchar(50) NOT NULL,
   `zip` varchar(7) NOT NULL,
-  `x_coord` float NOT NULL,
-  `y_coord` float NOT NULL,
+  `latitude` double NOT NULL,
+  `longitude` double NOT NULL,
   UNIQUE (`id`, `code`, `address`),
   PRIMARY KEY (`id`)
 )
 ENGINE=InnoDB
 AUTO_INCREMENT = 1;
 
-INSERT INTO `stations` (id, name, code, address, city, state, zip, x_coord, y_coord)
+INSERT INTO `stations` (id, name, code, address, city, state, zip, latitude, longitude)
 VALUES 
 (1, 'Vancouver', 'VNC', '1150 Station St', 'Vancouver', 'BC', 'V6A 4C7', 49.27, -123.09),
 (2, 'Seattle', 'SEA', '303 S Jackson St', 'Seattle', 'WA', '98104', 47.59, -122.33),

@@ -27,4 +27,8 @@ public class RouteRestController {
     public Route findAll(@PathVariable int id) {
         return routeService.findById(id);
     }
+    @GetMapping("/routes/tester")
+    public String test() {
+        return "test";
+    }
 }
