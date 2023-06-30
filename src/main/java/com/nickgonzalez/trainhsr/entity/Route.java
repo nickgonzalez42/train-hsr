@@ -34,4 +34,16 @@ public class Route {
     @JsonIgnore
     @OneToMany(mappedBy = "route", fetch = FetchType.LAZY)
     private List<Train> train;
+
+    public Route() {
+
+    }
+
+    public Route(int id, Station origin, Station destination, float distance, List<Train> train) {
+        this.id = id;
+        this.origin = origin;
+        this.destination = destination;
+        this.distance = distance;
+        this.train = train;
+    }
 }

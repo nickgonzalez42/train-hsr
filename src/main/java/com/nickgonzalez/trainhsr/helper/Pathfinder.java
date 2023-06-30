@@ -1,9 +1,7 @@
-package com.nickgonzalez.trainhsr.pathfinding;
+package com.nickgonzalez.trainhsr.helper;
 
 import com.nickgonzalez.trainhsr.entity.Route;
 import com.nickgonzalez.trainhsr.entity.Station;
-import com.nickgonzalez.trainhsr.service.RouteService;
-import com.nickgonzalez.trainhsr.service.StationService;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -62,4 +62,25 @@ public class Station {
     @JsonIgnore
     @Transient
     private Station parent = null;
+
+    public Station() {
+
+    }
+    public Station(int id, String name, String code, String address, String city, String state, String zip, Double latitude, Double longitude, List<Route> outbound, List<Route> inbound, double g, double h, double f, Station parent) {
+        this.id = id;
+        this.name = name;
+        this.code = code;
+        this.address = address;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.outbound = outbound;
+        this.inbound = inbound;
+        this.g = g;
+        this.h = h;
+        this.f = f;
+        this.parent = parent;
+    }
 }

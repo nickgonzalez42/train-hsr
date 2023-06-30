@@ -16,6 +16,7 @@ import java.util.Date;
 public class Train {
     @Id
     @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @ManyToOne
@@ -31,4 +32,14 @@ public class Train {
     private int currentCapacity;
     @Column(name="max_capacity")
     private int maxCapacity;
+    public Train() {
+
+    }
+    public Train(Route route, Date departure, Date arrival, int currentCapacity, int maxCapacity) {
+        this.route = route;
+        this.departure = departure;
+        this.arrival = arrival;
+        this.currentCapacity = currentCapacity;
+        this.maxCapacity = maxCapacity;
+    }
 }
