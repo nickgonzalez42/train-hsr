@@ -13,7 +13,7 @@ public class StationServiceImpl implements StationService {
     private StationRepository stationRepository;
     @Autowired
     public StationServiceImpl(StationRepository theStationRepository) {
-        stationRepository = theStationRepository;
+        this.stationRepository = theStationRepository;
     }
     @Override
     public List<Station> findAll() {

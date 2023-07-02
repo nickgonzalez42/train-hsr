@@ -6,6 +6,7 @@ import com.nickgonzalez.trainhsr.entity.Station;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 @Service
 public class RouteServiceImpl implements RouteService{
@@ -14,7 +15,7 @@ public class RouteServiceImpl implements RouteService{
 
     @Autowired
     public RouteServiceImpl(RouteRepository theRouteRepository) {
-        routeRepository = theRouteRepository;
+        this.routeRepository = theRouteRepository;
     }
     @Override
     public List<Route> findAll() {
@@ -26,5 +27,16 @@ public class RouteServiceImpl implements RouteService{
         Route route = routeRepository.findById(id);
         System.out.println(route.getDistance());
         return routeRepository.findById(id);
+    }
+
+    @Override
+    public List<Route> findRoutesFromOriginToDestination(List<Station> stations) {
+        List<Route> routes = new ArrayList<>();
+        for(int i = 1; i < stations.size(); i++) {
+
+            Route route = routeRepository.findByOriginAndDestination(stations.get(i - 1), stations.get(i));
+            routes.add(route);
+        }
+        return routes;
     }
 }

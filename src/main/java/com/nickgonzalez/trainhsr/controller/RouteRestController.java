@@ -1,4 +1,4 @@
-package com.nickgonzalez.trainhsr.rest;
+package com.nickgonzalez.trainhsr.controller;
 
 import com.nickgonzalez.trainhsr.entity.Route;
 import com.nickgonzalez.trainhsr.entity.Station;
@@ -16,8 +16,8 @@ public class RouteRestController {
     private StationService stationService;
 
     public RouteRestController(RouteService theRouteService, StationService theStationService) {
-        routeService = theRouteService;
-        stationService = theStationService;
+        this.routeService = theRouteService;
+        this.stationService = theStationService;
     }
     @GetMapping("/routes")
     public List<Route> findAll() {
@@ -30,5 +30,12 @@ public class RouteRestController {
     @GetMapping("/routes/tester")
     public String test() {
         return "test";
+    }
+    @GetMapping("/routes/{originId}/{destinationId}")
+    public List<Route> findRoutesFromOriginStationToDestinationStation(@PathVariable int originId, @PathVariable int destinationId) {
+        Station origin = stationService.findStationById(originId);
+        Station destination = stationService.findStationById(destinationId);
+        List<Station> stations = stationService.findStationsFromOriginToDestination(origin, destination);
+        return routeService.findRoutesFromOriginToDestination(stations);
     }
 }

@@ -1,19 +1,20 @@
 package com.nickgonzalez.trainhsr.service;
 
-import com.nickgonzalez.trainhsr.dao.StationRepository;
 import com.nickgonzalez.trainhsr.dao.TrainRepository;
-import com.nickgonzalez.trainhsr.entity.Station;
+import com.nickgonzalez.trainhsr.entity.Route;
 import com.nickgonzalez.trainhsr.entity.Train;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 @Service
 public class TrainServiceImpl implements TrainService {
     private TrainRepository trainRepository;
     @Autowired
     public TrainServiceImpl(TrainRepository theTrainRepository) {
-        trainRepository = theTrainRepository;
+        this.trainRepository = theTrainRepository;
     }
     @Override
     public List<Train> findAll() {
@@ -26,5 +27,16 @@ public class TrainServiceImpl implements TrainService {
     @Override
     public Train findTrainById(int id) {
         return trainRepository.findTrainById(id);
+    }
+
+    @Override
+    public List<List<Train>> findListsOfTrainsInRoutes(List<Route> routes, Date date) {
+        List<List<Train>> lists = new ArrayList<>();
+        for (Route route : routes) {
+            lists.add(trainRepository.findByRouteAndId(route, 74));
+            lists.add(trainRepository.findByRouteAndDepartureAfter(route, date));
+            System.out.println("WORKING");
+        }
+        return lists;
     }
 }

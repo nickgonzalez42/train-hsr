@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface RouteRepository extends JpaRepository<Route, Integer> {
     Route findById(int id);
+    Route findByOriginAndDestination(Station destination, Station origin);
 }

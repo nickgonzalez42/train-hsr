@@ -4,6 +4,7 @@ import com.nickgonzalez.trainhsr.entity.Route;
 import com.nickgonzalez.trainhsr.entity.Station;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Pathfinder {
@@ -27,10 +28,10 @@ public class Pathfinder {
                 List<Station> path = new ArrayList<>();
                 Station current = currentStation;
                 while(current != null) {
-                    System.out.println(current.getCity());
                     path.add(current);
                     current = current.getParent();
                 }
+                Collections.reverse(path);
                 return path;
             }
             List<Station> children = new ArrayList<>();
