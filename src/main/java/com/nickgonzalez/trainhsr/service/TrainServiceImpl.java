@@ -33,9 +33,12 @@ public class TrainServiceImpl implements TrainService {
     public List<List<Train>> findListsOfTrainsInRoutes(List<Route> routes, Date date) {
         List<List<Train>> lists = new ArrayList<>();
         for (Route route : routes) {
-            lists.add(trainRepository.findByRouteAndId(route, 74));
-            lists.add(trainRepository.findByRouteAndDepartureAfter(route, date));
-            System.out.println("WORKING");
+            List<Train> trains = trainRepository.findByRouteAndDepartureAfter(route, date);
+            // Setting price here to get most updated pricing info
+            for (Train train : trains) {
+                train.calculateCost();
+            }
+            lists.add(trains);
         }
         return lists;
     }

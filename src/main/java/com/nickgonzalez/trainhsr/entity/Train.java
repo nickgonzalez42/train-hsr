@@ -21,7 +21,7 @@ public class Train {
 
     @ManyToOne
     @JoinColumn(name = "route_id")
-    @JsonBackReference
+//    @JsonBackReference
     private Route route;
 
     @Column(name="departure_time")
@@ -32,8 +32,9 @@ public class Train {
     private int currentCapacity;
     @Column(name="max_capacity")
     private int maxCapacity;
+    @Transient
+    private double ticketPrice = 0;
     public Train() {
-
     }
     public Train(Route route, Date departure, Date arrival, int currentCapacity, int maxCapacity) {
         this.route = route;
@@ -41,5 +42,9 @@ public class Train {
         this.arrival = arrival;
         this.currentCapacity = currentCapacity;
         this.maxCapacity = maxCapacity;
+    }
+    public void calculateCost() {
+        double costPerMile = 0.3;
+        this.ticketPrice = costPerMile * this.route.getDistance();
     }
 }

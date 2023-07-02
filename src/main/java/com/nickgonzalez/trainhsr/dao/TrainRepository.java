@@ -11,7 +11,6 @@ import java.util.List;
 public interface TrainRepository extends JpaRepository<Train, Integer> {
     Train findTrainById(int id);
     List<Train> findByRouteAndId(Route route, int id);
+    //TODO Change this run query param for ON or after
     List<Train> findByRouteAndDepartureAfter(Route route, Date departure);
-//    @Query("SELECT t.* FROM trains t INNER JOIN routes r ON t.route_id = r.id WHERE t.route_id = 5 AND TIME(t.departure_time) >= '12:00:00';")
-//    List<Train> findTrainsFromRouteAtOrAfterDate(Date date, Route route);
 }
