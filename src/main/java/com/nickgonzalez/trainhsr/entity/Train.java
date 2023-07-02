@@ -1,6 +1,7 @@
 package com.nickgonzalez.trainhsr.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.annotation.PostConstruct;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,6 +35,7 @@ public class Train {
     private int maxCapacity;
     @Transient
     private double ticketPrice = 0;
+
     public Train() {
     }
     public Train(Route route, Date departure, Date arrival, int currentCapacity, int maxCapacity) {
@@ -43,6 +45,7 @@ public class Train {
         this.currentCapacity = currentCapacity;
         this.maxCapacity = maxCapacity;
     }
+    @PostLoad
     public void calculateCost() {
         double costPerMile = 0.3;
         this.ticketPrice = costPerMile * this.route.getDistance();
