@@ -22,7 +22,6 @@ public class Train {
 
     @ManyToOne
     @JoinColumn(name = "route_id")
-//    @JsonBackReference
     private Route route;
 
     @Column(name="departure_time")

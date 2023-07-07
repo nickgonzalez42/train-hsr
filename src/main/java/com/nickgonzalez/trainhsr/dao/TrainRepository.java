@@ -12,5 +12,5 @@ public interface TrainRepository extends JpaRepository<Train, Integer> {
     Train findTrainById(int id);
     List<Train> findByRouteAndId(Route route, int id);
     //TODO Change this run query param for ON or after
-    List<Train> findByRouteAndDepartureAfter(Route route, Date departure);
+    List<Train> findFirst10ByRouteAndDepartureAfter(Route route, Date departure);
 }

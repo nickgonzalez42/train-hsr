@@ -1,4 +1,4 @@
-package com.nickgonzalez.trainhsr;
+package com.nickgonzalez.trainhsr.pojo;
 
 import lombok.Data;
 

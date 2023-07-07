@@ -33,7 +33,7 @@ public class TrainServiceImpl implements TrainService {
     public List<List<Train>> findListsOfTrainsInRoutes(List<Route> routes, Date date) {
         List<List<Train>> lists = new ArrayList<>();
         for (Route route : routes) {
-            List<Train> trains = trainRepository.findByRouteAndDepartureAfter(route, date);
+            List<Train> trains = trainRepository.findFirst10ByRouteAndDepartureAfter(route, date);
             lists.add(trains);
         }
         return lists;
