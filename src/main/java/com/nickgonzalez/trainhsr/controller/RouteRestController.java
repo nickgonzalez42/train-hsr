@@ -13,11 +13,9 @@ import java.util.List;
 @RestController
 public class RouteRestController {
     private RouteService routeService;
-    private StationService stationService;
 
-    public RouteRestController(RouteService theRouteService, StationService theStationService) {
+    public RouteRestController(RouteService theRouteService) {
         this.routeService = theRouteService;
-        this.stationService = theStationService;
     }
     @GetMapping("/routes")
     public List<Route> findAll() {
@@ -26,16 +24,5 @@ public class RouteRestController {
     @GetMapping("/routes/{id}")
     public Route findAll(@PathVariable int id) {
         return routeService.findById(id);
-    }
-    @GetMapping("/routes/tester")
-    public String test() {
-        return "test";
-    }
-    @GetMapping("/routes/{originId}/{destinationId}")
-    public List<Route> findRoutesFromOriginStationToDestinationStation(@PathVariable int originId, @PathVariable int destinationId) {
-        Station origin = stationService.findStationById(originId);
-        Station destination = stationService.findStationById(destinationId);
-        List<Station> stations = stationService.findStationsFromOriginToDestination(origin, destination);
-        return routeService.findRoutesFromOriginToDestination(stations);
     }
 }

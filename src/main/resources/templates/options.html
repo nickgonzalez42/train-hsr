@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>High Speed Rail Ticketing</title>
+  </head>
+
+  <body>
+    <img width="800px" th:src="@{/images/map.gif}"/>
+    <form th:action="@{/purchase}" method="POST" th:object="${trip}">
+      <div th:each="trainList : ${trains}">
+        <h1 th:text="${trainList.get(0).getRoute.getOrigin.getName + ' to ' + trainList.get(0).getRoute.getDestination.getName} ">ROUTE DESCRIPTION</h1>
+        <div th:each="train : ${trainList}">
+          <!-- Fix th:field -->
+          <input th:name="${train.getRoute.getOrigin.getName}" th:field="*{trainIds}" type="checkbox" th:value="${train.getId}" />
+          <span th:text="${'Departure: ' + train.getDeparture + ' Arrival: ' + train.getArrival}">TRAIN INFO</span><br />
+        </div>
+      </div>
+      <input type="submit" value="Submit">
+    </form>
+  </body>
+</html>
