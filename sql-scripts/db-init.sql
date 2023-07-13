@@ -228,3 +228,14 @@ WHERE `arrival_time` IS NULL;
 UPDATE `trains`
 SET `current_capacity` = FLOOR(RAND()*(`max_capacity`))
 WHERE `current_capacity` IS NULL;
+
+CREATE TABLE IF NOT EXISTS `trainapp`.`tickets` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `train_id` integer,
+  `passenger_name` varchar(50),
+  PRIMARY KEY (`id`),
+  KEY `fk_train` (`train_id`),
+  CONSTRAINT `fk_train` FOREIGN KEY (`train_id`) REFERENCES `trains` (`id`)
+)
+ENGINE=InnoDB
+AUTO_INCREMENT = 1;

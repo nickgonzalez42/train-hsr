@@ -7,6 +7,9 @@
 
   <body>
     <img width="800px" th:src="@{/images/map.gif}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('trip')}"
+          th:errors="*{trip}">Ingredient Error</span>
     <form th:action="@{/purchase}" method="POST" th:object="${trip}">
       <div th:each="trainList : ${trains}">
         <h1 th:text="${trainList.get(0).getRoute.getOrigin.getName + ' to ' + trainList.get(0).getRoute.getDestination.getName} ">ROUTE DESCRIPTION</h1>
@@ -16,6 +19,8 @@
           <span th:text="${'Departure: ' + train.getDeparture + ' Arrival: ' + train.getArrival}">TRAIN INFO</span><br />
         </div>
       </div>
+      <h3>Passenger Name:</h3>
+      <input type="text" th:field="*{customerName}"/>
       <input type="submit" value="Submit">
     </form>
   </body>

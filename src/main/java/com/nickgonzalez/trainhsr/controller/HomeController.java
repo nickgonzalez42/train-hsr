@@ -2,14 +2,23 @@ package com.nickgonzalez.trainhsr.controller;
 
 import com.nickgonzalez.trainhsr.entity.Route;
 import com.nickgonzalez.trainhsr.entity.Station;
+import com.nickgonzalez.trainhsr.entity.Ticket;
 import com.nickgonzalez.trainhsr.entity.Train;
 import com.nickgonzalez.trainhsr.pojo.Trip;
+import com.nickgonzalez.trainhsr.pojo.TripValidator;
 import com.nickgonzalez.trainhsr.service.RouteService;
 import com.nickgonzalez.trainhsr.service.StationService;
+import com.nickgonzalez.trainhsr.service.TicketService;
 import com.nickgonzalez.trainhsr.service.TrainService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -20,10 +29,14 @@ public class HomeController {
     private TrainService trainService;
     private RouteService routeService;
     private StationService stationService;
-    public HomeController(TrainService theTrainService, RouteService theRouteService, StationService theStationService) {
+    private TicketService ticketService;
+    private TripValidator tripValidator;
+    public HomeController(TrainService theTrainService, TicketService ticketService, RouteService theRouteService, StationService theStationService, TripValidator theTripValidator) {
         this.routeService = theRouteService;
         this.trainService = theTrainService;
         this.stationService = theStationService;
+        this.tripValidator = theTripValidator;
+        this.ticketService = ticketService;
     }
     @ModelAttribute(name = "stations")
     public List<Station> stations() {
@@ -34,6 +47,10 @@ public class HomeController {
     @ModelAttribute(name = "trip")
     public Trip trip() {
         return new Trip();
+    }
+    @ModelAttribute(name = "tickets")
+    public List<Ticket> tickets() {
+        return new ArrayList<Ticket>();
     }
     @GetMapping("/")
     public String home() {
@@ -66,9 +83,15 @@ public class HomeController {
         }
     }
     @PostMapping("/purchase")
-    public String purchase(Trip trip) {
+    public String purchase(@Valid Trip trip, BindingResult bindingResult, Errors errors, @ModelAttribute List<Ticket> tickets) {
+//        tripValidator.validate(trip, bindingResult);
+//        if (bindingResult.hasErrors()) {
+//            return "error";
+//        }
         for (int id : trip.getTrainIds()) {
-            System.out.println(id);
+            Ticket tempTicket = new Ticket(trip.getCustomerName(), trainService.findTrainById(id));
+            Ticket ticket = ticketService.save(tempTicket);
+            tickets.add(ticket);
         }
         return "purchase";
     }
