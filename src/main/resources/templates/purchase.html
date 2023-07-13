@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>High Speed Rail Ticketing</title>
+  </head>
+
+  <body>
+    <img width="800px" th:src="@{/images/map.gif}"/>
+    <h1 th:text="${tickets.get(0).getPassengerName()}"></h1>
+  </body>
+</html>

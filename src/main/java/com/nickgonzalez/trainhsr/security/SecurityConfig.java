@@ -26,6 +26,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests(configurer ->
                 configurer
                         .requestMatchers(HttpMethod.GET, "/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/**").permitAll()
         );
         // Use HTTP Basic authentication
         http.httpBasic(Customizer.withDefaults());

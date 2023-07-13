@@ -1,6 +1,7 @@
 package com.nickgonzalez.trainhsr.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.annotation.PostConstruct;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -8,6 +9,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "trains")
@@ -32,6 +34,9 @@ public class Train {
     private int currentCapacity;
     @Column(name="max_capacity")
     private int maxCapacity;
+    @OneToMany(mappedBy = "train", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Ticket> tickets;
     @Transient
     private double ticketPrice = 0;
 
@@ -49,4 +54,5 @@ public class Train {
         double costPerMile = 0.3;
         this.ticketPrice = costPerMile * this.route.getDistance();
     }
+
 }
