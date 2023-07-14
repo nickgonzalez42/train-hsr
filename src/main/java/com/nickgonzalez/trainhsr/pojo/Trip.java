@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Validated
 public class Trip {
     private List<Integer> trainIds = new ArrayList<Integer>();

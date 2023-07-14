@@ -7,6 +7,14 @@
 
   <body>
     <img width="800px" th:src="@{/images/map.gif}"/>
-    <h1 th:text="${tickets.get(0).getPassengerName()}"></h1>
+    <h1 th:text="${'Thank you for shopping with us, '} + ${ticketList.getTickets().get(0).getPassengerName()} + ${'!'}"></h1>
+    <h2>Please find your ticket information below:</h2>
+    <div th:each="ticket : ${ticketList.getTickets}">
+      <h4 th:text="${ticket.getTrain().getRoute().getOrigin().getName()} + ${' to '} + ${ticket.getTrain().getRoute().getDestination().getName()}">ROUTE</h4>
+      <p th:text="${'Departure time: '}+${ticket.getTrain().getDeparture()}">DEPARTURE TIME</p>
+      <p th:text="${'Arrival time: '}+${ticket.getTrain().getArrival()}">ARRIVAL TIME</p>
+      <p th:text="${'Train ID: '}+${ticket.getTrain().getId()}">TRAIN ID</p>
+      <p th:text="${'Ticket ID: '}+${ticket.getId()}">TICKET ID</p>
+    </div>
   </body>
 </html>

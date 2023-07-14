@@ -4,6 +4,7 @@ import com.nickgonzalez.trainhsr.entity.Route;
 import com.nickgonzalez.trainhsr.entity.Station;
 import com.nickgonzalez.trainhsr.entity.Ticket;
 import com.nickgonzalez.trainhsr.entity.Train;
+import com.nickgonzalez.trainhsr.pojo.TicketList;
 import com.nickgonzalez.trainhsr.pojo.Trip;
 import com.nickgonzalez.trainhsr.pojo.TripValidator;
 import com.nickgonzalez.trainhsr.service.RouteService;
@@ -48,10 +49,11 @@ public class HomeController {
     public Trip trip() {
         return new Trip();
     }
-    @ModelAttribute(name = "tickets")
-    public List<Ticket> tickets() {
-        return new ArrayList<Ticket>();
+    @ModelAttribute(name = "ticketList")
+    public TicketList ticketList() {
+        return new TicketList();
     }
+
     @GetMapping("/")
     public String home() {
         return "home";
@@ -83,16 +85,18 @@ public class HomeController {
         }
     }
     @PostMapping("/purchase")
-    public String purchase(@Valid Trip trip, BindingResult bindingResult, Errors errors, @ModelAttribute List<Ticket> tickets) {
-//        tripValidator.validate(trip, bindingResult);
-//        if (bindingResult.hasErrors()) {
-//            return "error";
-//        }
+    public String purchase(@Valid Trip trip, BindingResult bindingResult, Errors errors, @ModelAttribute TicketList ticketList) {
+        tripValidator.validate(trip, bindingResult);
+        if (bindingResult.hasErrors()) {
+            return "error";
+        }
         for (int id : trip.getTrainIds()) {
             Ticket tempTicket = new Ticket(trip.getCustomerName(), trainService.findTrainById(id));
             Ticket ticket = ticketService.save(tempTicket);
-            tickets.add(ticket);
+            ticketList.addTicket(ticket);
+            System.out.println(ticket.getTrain().getRoute().getOrigin().getName());
         }
         return "purchase";
     }
+    
 }
