@@ -98,5 +98,9 @@ public class HomeController {
         }
         return "purchase";
     }
-    
+    //TODO Add an about page
+    @GetMapping("/about")
+    public String about() {
+        return "about";
+    }
 }
