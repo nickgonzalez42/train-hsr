@@ -2,10 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>About</title>
+    <link rel="stylesheet" href="/styles/style.css">
 </head>
 <body>
+  <div id="about-content"></div>
   <h1>About</h1>
+  <p>This app was created out of my love for multimodal transit and the desire to design a project that had a commercial implementation.
+  If you follow the link at the bottom of the page, you'll be taken to the homepage. From there, you can select a date, an origin city, and a destination city.
+  The app will route you along the shortest geographic distance and provide a list of train times to select from. Once you pick your trains and provide your name, unique ticket IDs will be provided
+  and saved to the database.<hr />The MYSQL database was built using SQL scripts that generate Stations and Routes (which were hardcoded based on the map from <a href="https://www.ushsr.com/hsrmap/">US HSR</a> that can be found throughout the project.
+  Once the routes have been created, a SQL script is run to randomly generate Train instances assigned to each route. Skipping forward to the routing between stations, I implemented a version of Dijkstra's algorithm
+  which weighs the cost of each path to the final destination; the costs in this case are the distances between Station global coordinates.
+  <hr />
+  I hope you find the project interesting. If you'd like to learn more or contact me, please utilize the following social links:<hr />
+  <a href="https://github.com/nickgonzalez42/train-hsr">Source Code</a>
+  <a href="https://www.linkedin.com/in/nicholasjgonzalez/">LinkedIn</a>
+  </p>
   <a th:href="@{/}">Try for yourself!</a>
+</div>
 </body>
 </html>

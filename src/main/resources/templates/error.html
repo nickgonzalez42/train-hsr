@@ -3,10 +3,13 @@
       xmlns:th="http://www.thymeleaf.org">
   <head>
     <title>High Speed Rail Ticketing</title>
+    <link rel="stylesheet" href="/styles/style.css">
   </head>
 
   <body>
-  <h1>Please select one train per route.</h1>
-  <a th:href="@{/map}">Return to Route Generation</a>
+    <div id="error-content">
+     <h1>Please select one train per route.</h1>
+     <a th:href="@{/map}">Return to Route Generation</a>
+    </div>
   </body>
 </html>

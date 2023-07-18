@@ -3,11 +3,12 @@
       xmlns:th="http://www.thymeleaf.org">
   <head>
     <title>High Speed Rail Ticketing</title>
+    <link rel="stylesheet" href="/styles/style.css">
   </head>
 
   <body>
+  <div id="map-content">
     <img width="800px" th:src="@{/images/map.gif}"/>
-<!-- Add th:field -->
     <form method="GET" th:action="@{/options}">
       <label for="outbound">Outbound Trains:</label>
       <select id="outbound" name="outbound">
@@ -30,5 +31,6 @@
 
       <input type="submit" value="Submit">
     </form>
+  </div>
   </body>
 </html>

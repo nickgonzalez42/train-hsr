@@ -3,9 +3,11 @@
       xmlns:th="http://www.thymeleaf.org">
   <head>
     <title>High Speed Rail Ticketing</title>
+    <link rel="stylesheet" href="/styles/style.css">
   </head>
 
   <body>
+  <div id="options-content">
     <img width="800px" th:src="@{/images/map.gif}"/>
     <span class="validationError"
           th:if="${#fields.hasErrors('trip')}"
@@ -23,5 +25,6 @@
       <input type="text" th:field="*{customerName}"/>
       <input type="submit" value="Submit">
     </form>
+  </div>
   </body>
 </html>

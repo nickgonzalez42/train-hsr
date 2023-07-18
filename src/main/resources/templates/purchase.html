@@ -3,9 +3,11 @@
       xmlns:th="http://www.thymeleaf.org">
   <head>
     <title>High Speed Rail Ticketing</title>
+    <link rel="stylesheet" href="/styles/style.css">
   </head>
 
   <body>
+  <div id="purchase-content">
     <img width="800px" th:src="@{/images/map.gif}"/>
     <h1 th:text="${'Thank you for shopping with us, '} + ${ticketList.getTickets().get(0).getPassengerName()} + ${'!'}"></h1>
     <h2>Please find your ticket information below:</h2>
@@ -16,5 +18,6 @@
       <p th:text="${'Train ID: '}+${ticket.getTrain().getId()}">TRAIN ID</p>
       <p th:text="${'Ticket ID: '}+${ticket.getId()}">TICKET ID</p>
     </div>
+  </div>
   </body>
 </html>

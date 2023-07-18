@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>High Speed Rail Ticketing</title>
-</head>
+    <head>
+        <title>High Speed Rail Ticketing</title>
+        <link rel="stylesheet" href="/styles/style.css">
+    </head>
 
-<body>
-<h1>Welcome to...</h1>
+    <body>
+        <div id="home-content">
+            <h1>Welcome to High Speed Rail Ticketing</h1>
 
-<a th:href="@{/map}" id="design">Generate your route</a>
-</body>
+            <a th:href="@{/map}">Generate your route</a>
+            <a th:href="@{/about}">About</a>
+        </div>
+    </body>
 </html>
